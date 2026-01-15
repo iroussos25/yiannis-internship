@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Carousel from "react-slick";
+import Slider from "react-slick";
 
 
 
@@ -25,19 +25,41 @@ const HotCollections = () => {
     fetchUsers();
   }, [])
 
-  function myCarousel() {
-    var settings = {
+  
+    const settings = {
       dots: true,
       infinite: true,
       speed: 500,
       slidesToShow: 4,
-      slidesToScroll: 1
-    }
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slideToScroll: 1,
+           
+        }
+        },
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2,
+            slideToScroll: 1,
+          }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slideToScroll: 1,
+            }
+          }
+        ]
+    };
     return (
       
-      
-      Carousel {...settings}>
-      
+                  
       <section id="section-collections" className="no-bottom">
       <div className="container">
         <div className="row">
@@ -48,10 +70,12 @@ const HotCollections = () => {
             </div>
           </div>
 
-        {users.map((user) => (
+           <Slider{...settings}> 
 
-          <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={user.id}>
-              <div className="nft_coll">
+        {users.map((user) => (
+          
+          <div  key={user.id}>
+              <div>
                 <div className="nft_wrap">
                   <Link to={`/item-details/${user.nftId}`}>
                     <img src={user.nftImage} className="lazy img-fluid" alt="" />
@@ -73,17 +97,18 @@ const HotCollections = () => {
             </div>
 ))
 }          
+</Slider>
         </div>
       </div>
     </section>
-    </Carousel>
+    
     )
   }
   
   
 
 
-};
+
 
 
 
