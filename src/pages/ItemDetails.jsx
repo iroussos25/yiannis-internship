@@ -1,15 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import EthImage from "../images/ethereum.svg";
 import { Link } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
+import axios from "axios";
 
 const ItemDetails = () => {
+  const [users, setUsers] = useState([]);
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    async function fetchData() {
+      const response = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
+      setUsers(response.data)
+    }
+    fetchData();
   }, []);
 
   return (
+                {users.map((user) => (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
@@ -22,7 +31,10 @@ const ItemDetails = () => {
                   className="img-fluid img-rounded mb-sm-30 nft-image"
                   alt=""
                 />
-              </div>
+                
+                </div>
+
+
               <div className="col-md-6">
                 <div className="item_info">
                   <h2>Rainbow Style #194</h2>
@@ -88,6 +100,7 @@ const ItemDetails = () => {
         </section>
       </div>
     </div>
+  ))}
   );
 };
 
