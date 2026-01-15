@@ -25,12 +25,20 @@ const HotCollections = () => {
     fetchUsers();
   }, [])
 
-  
-  return (
-    
-    
-    
-    <section id="section-collections" className="no-bottom">
+  function myCarousel() {
+    var settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 4,
+      slidesToScroll: 1
+    }
+    return (
+      
+      
+      Carousel {...settings}>
+      
+      <section id="section-collections" className="no-bottom">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -68,9 +76,15 @@ const HotCollections = () => {
         </div>
       </div>
     </section>
-        )
+    </Carousel>
+    )
+  }
   
+  
+
+
 };
+
 
 
 
