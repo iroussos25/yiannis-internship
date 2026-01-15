@@ -17,8 +17,8 @@ const ItemDetails = () => {
   }, []);
 
   return (
-                {users.map((user) => (
     <div id="wrapper">
+      {users.map((user) => (
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
         <section aria-label="section" className="mt90 sm-mt-0">
@@ -98,8 +98,8 @@ const ItemDetails = () => {
           </div>
         </section>
       </div>
-    </div>
   ))}
+    </div>
   );
 };
 
