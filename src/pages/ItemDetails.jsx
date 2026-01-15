@@ -27,7 +27,7 @@ const ItemDetails = () => {
             <div className="row">
               <div className="col-md-6 text-center">
                 <img
-                  src={nftImage}
+                  src={user.nftImage}
                   className="img-fluid img-rounded mb-sm-30 nft-image"
                   alt=""
                 />
@@ -37,7 +37,7 @@ const ItemDetails = () => {
 
               <div className="col-md-6">
                 <div className="item_info">
-                  <h2>Rainbow Style #194</h2>
+                  <h2>{user.title} #{user.code}</h2>
 
                   <div className="item_info_counts">
                     <div className="item_info_views">
@@ -60,7 +60,7 @@ const ItemDetails = () => {
                       <div className="item_author">
                         <div className="author_list_pp">
                           <Link to="/author">
-                            <img className="lazy" src={AuthorImage} alt="" />
+                            <img className="lazy" src={user.authorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
