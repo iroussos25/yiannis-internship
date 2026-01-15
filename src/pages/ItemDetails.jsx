@@ -19,7 +19,7 @@ const ItemDetails = () => {
   return (
     <div id="wrapper">
       {users.map((user) => (
-      <div className="no-bottom no-top" id="content">
+      <div className="no-bottom no-top" id="content" key = {user.id}>
         <div id="top"></div>
         <section aria-label="section" className="mt90 sm-mt-0">
           <div className="container">
@@ -76,7 +76,7 @@ const ItemDetails = () => {
                       <div className="item_author">
                         <div className="author_list_pp">
                           <Link to="/author">
-                            <img className="lazy" src={AuthorImage} alt="" />
+                            <img className="lazy" src={user.authorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
