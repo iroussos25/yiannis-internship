@@ -60,12 +60,9 @@ const HotCollections = () => {
   };
   return (
       loading ? (
-        <Skeleton variant="rectangular">
-          <div style={{ width: '100%', height: '400px' }}></div>
-        </Skeleton> )
-        :(
-
-          
+        <Skeleton variant="rectangular"></Skeleton>
+      ) : (
+                  
           <section id="section-collections" className="no-bottom">
       <div className="container">
         <div className="row">
@@ -76,7 +73,7 @@ const HotCollections = () => {
             </div>
           </div>
 
-           <Slider{...settings}> 
+           <Slider {...settings}> 
 
         {users.map((user) => (
           
