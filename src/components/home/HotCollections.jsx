@@ -25,46 +25,48 @@ const HotCollections = () => {
     }
     fetchUsers();
   }, [])
-
   
-    const settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 4,
-      slidesToScroll: 1,
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3,
-            slideToScroll: 1,
-           
+  
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slideToScroll: 1,
+          
         }
-        },
-        {
-          breakpoint: 768,
-          settings: {
-            slidesToShow: 2,
-            slideToScroll: 1,
-          }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 1,
-              slideToScroll: 1,
-            }
-          }
-        ]
-    };
-    return (
-      { loading ? 
-        <Skeleton variant="rectangular" width={210} height={118} animation="wave" />
-
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slideToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slideToScroll: 1,
+        }
       }
-                  
-      <section id="section-collections" className="no-bottom">
+    ]
+  };
+  return (
+      loading ? (
+        <Skeleton variant="rectangular">
+          <div style={{ width: '100%', height: '400px' }}></div>
+        </Skeleton> )
+        :(
+
+          
+          <section id="section-collections" className="no-bottom">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -105,6 +107,7 @@ const HotCollections = () => {
         </div>
       </div>
     </section>
+  )
     
     )
   }
