@@ -4,7 +4,7 @@ import axios from "axios";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from "react-slick";
-import { Skeleton } from "@mui/material";
+import { Skeleton, Stack } from "@mui/material";
 
 
 
@@ -58,9 +58,14 @@ const HotCollections = () => {
       }
     ]
   };
+  
   return (
       loading ? (
-        <Skeleton variant="rectangular"></Skeleton>
+        <Stack spacing={1}>
+          <Skeleton variant="rectangular"><nft_wrap /></Skeleton>
+          <Skeleton variant="circular"><nft_coll_pp /></Skeleton>
+          <Skeleton variant="text"><nft_coll_info /></Skeleton>
+        </Stack>
       ) : (
                   
           <section id="section-collections" className="no-bottom">
