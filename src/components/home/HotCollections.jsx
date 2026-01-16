@@ -8,20 +8,20 @@ import { Skeleton } from "@mui/material";
 
 
 
-
-
 const HotCollections = () => {
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  
   
   useEffect(() => {
-
+    setLoading(true);
     async function fetchUsers() {
       
       
       const response = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
       setUsers(response.data)
       
-      
+      setLoading(false);
     }
     fetchUsers();
   }, [])
@@ -59,7 +59,10 @@ const HotCollections = () => {
         ]
     };
     return (
-      
+      { loading ? 
+        <Skeleton variant="rectangular" width={210} height={118} animation="wave" />
+
+      }
                   
       <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -79,15 +82,8 @@ const HotCollections = () => {
               <div>
                 <div className="nft_wrap">
                   <Link to={`/item-details/${user.nftId}`}>
-            loading ? ( 
-              <Skeleton variant="rectangular">
-          
-                    <img src={user.nftImage} className="lazy img-fluid" alt="" />
-              </Skeleton>
-            ) : (
-                    <img src={user.nftImage}/>
-            ) 
-                  </Link>
+                   <img src={user.nftImage} className="lazy img-fluid" alt="" />
+                   </Link>
                 </div>
                 <div className="nft_coll_pp">
                   <Link to="/author">
