@@ -4,6 +4,7 @@ import axios from "axios";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from "react-slick";
+import { Skeleton } from "@mui/material";
 
 
 
@@ -78,7 +79,14 @@ const HotCollections = () => {
               <div>
                 <div className="nft_wrap">
                   <Link to={`/item-details/${user.nftId}`}>
+            loading ? ( 
+              <Skeleton variant="rectangular">
+          
                     <img src={user.nftImage} className="lazy img-fluid" alt="" />
+              </Skeleton>
+            ) : (
+                    <img src={user.nftImage}/>
+            ) 
                   </Link>
                 </div>
                 <div className="nft_coll_pp">
