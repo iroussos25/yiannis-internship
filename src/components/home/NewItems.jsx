@@ -24,7 +24,8 @@ const NewItems = () => {
     
 
   return (
-    <section id="section-items" className="no-bottom">
+    
+        <section id="section-items" className="no-bottom">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -34,18 +35,21 @@ const NewItems = () => {
             </div>
           </div>
 
-{loading ?(
+    {loading 
+    ?         
+        new Array(4).fill(0).map((_, index) => (
+          <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+            <div className="nft__item">
+            <div className="author_list_pp">
+            <div className="lazy skeleton" style={{width: '50px', height: '50px', borderRadius: '50%'}}></div>
+            </div>
+            <div className="de_countdown skeleton" style={{width: '80px', height: '20px'}}></div>
+            </div>
+            </div>
+        ))
+           : (
 
-  new Array(4).fill(0).map((_, index) => (
-    <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-      <div className="nft__item">
-      <div className="author_list_pp">
-      <div className="lazy skeleton" style={{width: '50px', height: '50px', borderRadius: '50%'}}></div>
-      </div>
-      <div className="de_countdown skeleton" style={{width: '80px', height: '20px'}}></div>
-  ))
-) : (
-    {users.map((user) => (
+     users.map((user) => (
       
       <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={user.authorId}>
       <div className="nft__item">
@@ -101,7 +105,7 @@ const NewItems = () => {
                   </div>
                   </div>
                   </div>
-                ))}
+                ))
               )}
               
               </div>
