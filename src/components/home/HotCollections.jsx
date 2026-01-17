@@ -64,10 +64,13 @@ const HotCollections = () => {
   return (
       loading ? (
         <Stack spacing={1}>
-          <Skeleton variant="rectangular"><div className="nft_wrap"><img/></div></Skeleton>
-          <Skeleton variant="circular"><div className="nft_coll_pp"><img/></div></Skeleton>
-          <Skeleton variant="text"><div className="nft_coll_info"><img/></div></Skeleton>
+          <Skeleton variant="text" sx={{ fontSize: '3rem' }} />
+          <Skeleton variant="rectangular" width="80%" height={200} />
+          <Skeleton variant="circular" width={40} height={40} />
+          <Skeleton variant="circular" width={40} height={40} />
+          <Skeleton variant="circular" width={40} height={40} />
         </Stack>
+
       ) : (
                   
           <section id="section-collections" className="no-bottom">
