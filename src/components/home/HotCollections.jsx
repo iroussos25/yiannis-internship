@@ -4,7 +4,7 @@ import axios from "axios";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from "react-slick";
-import { Skeleton, Stack } from "@mui/material";
+import { Box, Skeleton, Stack } from "@mui/material";
 
 
 
@@ -63,12 +63,16 @@ const HotCollections = () => {
   
   return (
       loading ? (
-        <Stack spacing={1}>
-          <Skeleton variant="text" sx={{ fontSize: '3rem' }} />
+        <Stack spacing={6}>
+          <Skeleton variant="text" height={48} width = "80%"/>
           <Skeleton variant="rectangular" width="80%" height={200} />
+        <Box sx={{ display: 'flex', gap: 10 }}>
           <Skeleton variant="circular" width={40} height={40} />
           <Skeleton variant="circular" width={40} height={40} />
           <Skeleton variant="circular" width={40} height={40} />
+          <Skeleton variant="circular" width={40} height={40} />
+
+        </Box>
         </Stack>
 
       ) : (
