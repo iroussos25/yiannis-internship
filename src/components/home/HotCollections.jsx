@@ -15,16 +15,26 @@ const HotCollections = () => {
   
   useEffect(() => {
     setLoading(true);
-    async function fetchUsers() {
+    const timer = setTimeout(() => {
       
-      
-      const response = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
-      setUsers(response.data)
       
       setLoading(false);
+      
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
+  
+  useEffect(() => {
+
+    async function fetchUsers() {
+          
+      const response = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
+      setUsers(response.data)
     }
-    fetchUsers();
-  }, [])
+  
+      fetchUsers();
+    }, [])
+  
   
   
   const settings = {
