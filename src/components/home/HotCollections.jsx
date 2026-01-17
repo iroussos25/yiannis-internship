@@ -19,7 +19,6 @@ const HotCollections = () => {
       setLoading(true);
       
       const response = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
-      await new Promise(res => setTimeout(res, 5000));
       setUsers(response.data)
       setLoading(false);
     }
@@ -63,14 +62,14 @@ const HotCollections = () => {
   
   return (
       loading ? (
-        <Stack spacing={6}>
-          <Skeleton variant="text" height={48} width = "80%"/>
-          <Skeleton variant="rectangular" width="80%" height={200} />
-        <Box sx={{ display: 'flex', gap: 10 }}>
-          <Skeleton variant="circular" width={40} height={40} />
-          <Skeleton variant="circular" width={40} height={40} />
-          <Skeleton variant="circular" width={40} height={40} />
-          <Skeleton variant="circular" width={40} height={40} />
+        <Stack spacing={6} justifyContent="center" alignItems="center" marginTop={20}>
+          <Skeleton variant="text" animation="wave" height={48} width = "80%" align="center"/>
+          <Skeleton variant="rectangular" animation="wave" width="80%" height={200}  />
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 20 }}>
+          <Skeleton variant="circular" animation="wave" width={40} height={40} />
+          <Skeleton variant="circular" animation="wave" width={40} height={40} />
+          <Skeleton variant="circular" animation="wave" width={40} height={40} />
+          <Skeleton variant="circular" animation="wave" width={40} height={40} />
 
         </Box>
         </Stack>
