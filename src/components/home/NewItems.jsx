@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Countdown from "../timer";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from "react-slick";
 
 const NewItems = () => {
 
@@ -23,6 +26,37 @@ setLoading(false);
 fetchUsers();
 }, [])
 
+ const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slideToScroll: 1,
+          
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slideToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slideToScroll: 1,
+        }
+      }
+    ]
+  };
 
 return (
 
@@ -49,10 +83,11 @@ new Array(4).fill(0).map((_, index) => (
 </div>
 ))
 : (
+<Slider {...settings}>
 
-users.map((user) => (
+{users.map((user) => (
 
-<div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={user.authorId}>
+<div key={user.authorId}>
 <div className="nft__item">
   <Countdown deadline={user.expiryDate}/>
 <div className="author_list_pp">
@@ -91,8 +126,8 @@ title="Creator: Monica Lucas"
           <img
           src={user.nftImage}
           className="lazy nft__item_preview"
-      alt=""
-      />
+          alt=""
+          />
       </Link>
       </div>
       <div className="nft__item_info">
@@ -108,6 +143,9 @@ title="Creator: Monica Lucas"
   </div>
   </div>
 ))
+}
+          </Slider>
+
 )}
 
 </div>
