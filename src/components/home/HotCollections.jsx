@@ -63,8 +63,13 @@ const HotCollections = () => {
   return (
       loading ? (
         <Stack spacing={6} justifyContent="center" alignItems="center" marginTop={20}>
-          <Skeleton variant="text" animation="wave" height={48} width = "80%" align="center"/>
-          <Skeleton variant="rectangular" animation="wave" width="80%" height={200}  />
+          <Skeleton variant="text" animation="wave" height={56} width = "40%" align="center"/>
+          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2 }}>
+          <Skeleton variant="rectangular" animation="wave" width={200} height={100} />
+          <Skeleton variant="rectangular" animation="wave" width={200} height={100} />
+          <Skeleton variant="rectangular" animation="wave" width={200} height={100} />
+          <Skeleton variant="rectangular" animation="wave" width={200} height={100} />
+        </Box>
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 20 }}>
           <Skeleton variant="circular" animation="wave" width={40} height={40} />
           <Skeleton variant="circular" animation="wave" width={40} height={40} />
