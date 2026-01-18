@@ -5,6 +5,7 @@ import Countdown from "../timer";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from "react-slick";
+import { Box, Skeleton, Stack } from "@mui/material";
 
 const NewItems = () => {
 
@@ -73,14 +74,14 @@ return (
 {loading 
 ?         
 new Array(4).fill(0).map((_, index) => (
-<div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-<div className="nft__item">
-<div className="author_list_pp">
-<div className="lazy skeleton" style={{width: '50px', height: '50px', borderRadius: '50%'}}></div>
-</div>
-<div className="de_countdown skeleton" style={{width: '80px', height: '20px'}}></div>
-</div>
-</div>
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2 }}>
+          <Skeleton variant="rectangular" animation="wave" width={200} height={100} />
+          <Skeleton variant="rectangular" animation="wave" width={200} height={100} />
+          <Skeleton variant="rectangular" animation="wave" width={200} height={100} />
+          <Skeleton variant="rectangular" animation="wave" width={200} height={100} />
+        </Box>
+
+        
 ))
 : (
 <Slider {...settings}>
