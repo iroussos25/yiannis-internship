@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Countdown from "../timer";
 import 'slick-carousel/slick/slick.css';
@@ -58,9 +58,18 @@ fetchUsers();
     ]
   };
 
-return (
-
-<section id="section-items" className="no-bottom">
+  // {function ItemDetails({items}) {
+  //   const {id} = useParams();
+  //   const selectedItem = items.find(
+  //     (item) => item.id.toString() === id
+  //   )
+  //   return (
+  //   )
+  //   }}
+  
+  return (
+    
+    <section id="section-items" className="no-bottom">
 <div className="container">
 <div className="row">
 <div className="col-lg-12">
@@ -73,21 +82,21 @@ return (
 {loading 
 ?         
 new Array(4).fill(0).map((_, index) => (
-        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2 }}>
+  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2 }}>
           <Skeleton variant="rectangular" animation="wave" width={200} height={100} />
           <Skeleton variant="rectangular" animation="wave" width={200} height={100} />
           <Skeleton variant="rectangular" animation="wave" width={200} height={100} />
           <Skeleton variant="rectangular" animation="wave" width={200} height={100} />
         </Box>
 
-        
+
 ))
 : (
-<Slider {...settings}>
+  <Slider {...settings}>
 
 {users.map((user) => (
-
-<div key={user.id}>
+  
+  <div key={user.id}>
 <div className="nft__item">
   <Countdown deadline={user.expiryDate}/>
 <div className="author_list_pp">
@@ -121,7 +130,8 @@ title="Creator: Monica Lucas"
           </div>
           </div>
           
-          <Link to={`/item-details/${user.nftId}`}>
+      
+      <Link to={`/item-details/${user.nftId}`}>
           <img
           src={user.nftImage}
           className="lazy nft__item_preview"
