@@ -20,7 +20,6 @@ setLoading(true);
 
 const response = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems')
 setUsers(response.data)
-console.log(response.data);
 setLoading(false);
 }
 
@@ -88,12 +87,12 @@ new Array(4).fill(0).map((_, index) => (
 
 {users.map((user) => (
 
-<div key={user.authorId}>
+<div key={user.id}>
 <div className="nft__item">
   <Countdown deadline={user.expiryDate}/>
 <div className="author_list_pp">
 <Link
-to="/author"
+to={`/author/${user.nftId}`}
 data-bs-toggle="tooltip"
 data-bs-placement="top"
 title="Creator: Monica Lucas"
@@ -102,7 +101,6 @@ title="Creator: Monica Lucas"
 <i className="fa fa-check"></i>
 </Link>
 </div>
-{/* <div className="de_countdown"></div> */}
 
 <div className="nft__item_wrap">
 <div className="nft__item_extra">
@@ -123,7 +121,7 @@ title="Creator: Monica Lucas"
           </div>
           </div>
           
-          <Link to="/item-details">
+          <Link to={`/item-details/${user.nftId}`}>
           <img
           src={user.nftImage}
           className="lazy nft__item_preview"
@@ -145,7 +143,7 @@ title="Creator: Monica Lucas"
   </div>
 ))
 }
-          </Slider>
+  </Slider>
 
 )}
 
