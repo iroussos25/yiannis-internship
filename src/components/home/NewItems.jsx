@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Countdown from "../timer";
 import 'slick-carousel/slick/slick.css';
@@ -18,7 +18,7 @@ useEffect(() => {
 const fetchUsers = async() => {
 setLoading(true);
 
-const response = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems')
+const response = await axios.get('/newItems')
 setUsers(response.data)
 setLoading(false);
 }
@@ -58,14 +58,6 @@ fetchUsers();
     ]
   };
 
-  // {function ItemDetails({items}) {
-  //   const {id} = useParams();
-  //   const selectedItem = items.find(
-  //     (item) => item.id.toString() === id
-  //   )
-  //   return (
-  //   )
-  //   }}
   
   return (
     
@@ -101,7 +93,7 @@ new Array(4).fill(0).map((_, index) => (
   <Countdown deadline={user.expiryDate}/>
 <div className="author_list_pp">
 <Link
-to={`/author/${user.nftId}`}
+to={`/author/${user.id}`}
 data-bs-toggle="tooltip"
 data-bs-placement="top"
 title="Creator: Monica Lucas"
@@ -131,7 +123,7 @@ title="Creator: Monica Lucas"
           </div>
           
       
-      <Link to={`/item-details/${user.nftId}`}>
+      <Link to={`/item-details/${user.id}`}>
           <img
           src={user.nftImage}
           className="lazy nft__item_preview"
