@@ -14,10 +14,7 @@ async function fetchData() {
 const response = await axios.get('/newItems')
 const allItems = response.data;
 const foundItem = allItems.find((item) => item.id === Number(id));
-console.log("Found item:", foundItem);
-console.log("Looking for ID:", id);
-console.log("First item structure:", allItems[0]);
-console.log(id, typeof id)
+
 setItem(foundItem);
 }
 fetchData();
