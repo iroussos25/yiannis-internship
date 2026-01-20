@@ -1,10 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
+import axios from "axios";
 
 const Author = () => {
+
+const { id } = useParams();
+const [item, setItem] = useState(null)
+
+useEffect(() => {
+window.scrollTo(0, 0);
+
+async function fetchData() {
+const response = await axios.get('/topSellers')
+const allItems = response.data;
+console.log(response.data)
+const foundItem = allItems.find((item) => item.id === Number(id));
+
+setItem(foundItem);
+}
+fetchData();
+}, [id]);
+
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">

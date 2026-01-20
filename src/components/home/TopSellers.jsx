@@ -14,7 +14,6 @@ setLoading(true);
 
 const response = await axios.get('/topSellers')
 setSellers(response.data)
-console.log(response.data)
 setLoading(false);
 }
 
@@ -40,15 +39,14 @@ fetchSellers();
               new Array(12).fill(0).map((_, index) => (
         
         <li key= {index}>
-          <Box display="flex" alignItems="center" gap="4px">
+          <Box display="flex" gap='4px' alignItems="center" columnGap="4px">
 
           <div classname="author_list_pp">
-            <Skeleton animation="wave" variant="circular" width={50} height={50} />
-            <i className="fa fa-check"></i>
+            <Skeleton animation="wave" variant="circular" sx={{marginRight:'0px'}} width={50} height={50} />
           </div>
           <div className="author_list_info">
-            <Skeleton animation="wave" variant="text" width="100px" sx={{ fontSize: '1rem', margin: 0, transform: 'none'}} />
-            <Skeleton animation="pulse" variant="text" width="40px" sx={{ fontSize: '0.8rem'}} />
+            <Skeleton animation="wave" variant="text" width="100px" sx={{marginLeft:'-20px', fontSize: '1rem'}} />
+            <Skeleton animation="wave" variant="text" width="40px" sx={{marginLeft:'-20px', fontSize: '0.8rem'}} />
           </div>
           </Box>
         </li>
