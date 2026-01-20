@@ -93,7 +93,7 @@ new Array(4).fill(0).map((_, index) => (
   <Countdown deadline={user.expiryDate}/>
 <div className="author_list_pp">
 <Link
-to={`/author/${user.id}`}
+to={`/author/${user.authorId}`}
 data-bs-toggle="tooltip"
 data-bs-placement="top"
 title="Creator: Monica Lucas"
