@@ -74,7 +74,7 @@ fetchUsers();
 {loading 
 ?         
 new Array(4).fill(0).map((_, index) => (
-  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2 }}>
+  <Box key={index} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2 }}>
           <Skeleton variant="rectangular" animation="wave" width={200} height={100} />
           <Skeleton variant="rectangular" animation="wave" width={200} height={100} />
           <Skeleton variant="rectangular" animation="wave" width={200} height={100} />
@@ -103,7 +103,7 @@ title="Creator: Monica Lucas"
 </Link>
 </div>
 
-<div className="nft__item_wrap">
+<div className="nft__item_wrap" >
 <div className="nft__item_extra">
 <div className="nft__item_buttons">
 <button>Buy Now</button>
@@ -127,15 +127,15 @@ title="Creator: Monica Lucas"
           <img
           src={user.nftImage}
           className="lazy nft__item_preview"
-          alt=""
+          alt="" 
           />
       </Link>
       </div>
-      <div className="nft__item_info">
+      <div className="nft__item_info" >
       <Link to="/item-details">
       <h4>{user.title}</h4>
       </Link>
-    <div className="nft__item_price">{user.price} ETH</div>
+    <div className="nft__item_price" >{user.price} ETH</div>
   <div className="nft__item_like">
   <i className="fa fa-heart"></i>
     <span>{user.likes}</span>
