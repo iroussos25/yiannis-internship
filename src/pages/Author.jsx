@@ -2,41 +2,44 @@ import React, { useEffect, useState } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
 import { Link, useParams } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
 import axios from "axios";
 
 const Author = () => {
 
 const { id } = useParams();
-const [item, setItem] = useState(null)
+const [author, setAuthor] = useState(null)
+
 
 useEffect(() => {
 window.scrollTo(0, 0);
 
 async function fetchData() {
-const response = await axios.get('/topSellers')
-const allItems = response.data;
-console.log(response.data)
-const foundItem = allItems.find((item) => item.id === Number(id));
+const response = await axios.get(`/authors?author=${id}`)
+console.log(response)
+const data = response.data;
+setAuthor(Array.isArray(data) ? data : [data])
+// const foundAuthor = data.find((author) => author.id === Number(id));
 
-setItem(foundItem);
 }
 fetchData();
 }, [id]);
 
+if (!author) return <div className="container">Loading...</div>;
 
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
-
-        <section
+        {author.map((author, index) => (
+          <React.Fragment key={index}>
+          
+          <section
           id="profile_banner"
           aria-label="section"
           className="text-light"
-          data-bgimage="url(images/author_banner.jpg) top"
-          style={{ background: `url(${AuthorBanner}) top` }}
-        ></section>
+          data-bgimage={author.nftCollection?.[0]?.nftId}
+          style={{ background: `url(${author.nftCollection?.[0]?.nftImage || AuthorBanner}) top` }}
+          ></section>
 
         <section aria-label="section">
           <div className="container">
@@ -45,15 +48,15 @@ fetchData();
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+                      <img src={author.authorImage} alt="" />
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
+                          {author.authorName}
+                          <span className="profile_username">{author.tag}</span>
                           <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
+                            {author.address}
                           </span>
                           <button id="btn_copy" title="Copy Text">
                             Copy
@@ -64,7 +67,7 @@ fetchData();
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
+                      <div className="profile_follower">{author.followers} followers</div>
                       <Link to="#" className="btn-main">
                         Follow
                       </Link>
@@ -81,6 +84,8 @@ fetchData();
             </div>
           </div>
         </section>
+          </React.Fragment>
+        ))}
       </div>
     </div>
   );
