@@ -18,7 +18,7 @@ const HotCollections = () => {
     const fetchUsers = async() => {
       setLoading(true);
       
-      const response = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
+      const response = await axios.get('/hotCollections')
       setUsers(response.data)
       setLoading(false);
     }
@@ -98,7 +98,7 @@ const HotCollections = () => {
           <div  key={user.id}>
               <div>
                 <div className="nft_wrap">
-                  <Link to={`/item-details/${user.nftId}`}>
+                  <Link to={`/item-details/${user.id}`}>
                    <img src={user.nftImage} className="lazy img-fluid" alt="" />
                    </Link>
                 </div>
