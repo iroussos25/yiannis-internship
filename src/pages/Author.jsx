@@ -8,20 +8,36 @@ const Author = () => {
 
 const { id } = useParams();
 const [author, setAuthor] = useState(null)
+const [copyStatus, setCopyStatus] = useState("Copy");
+
+const handleCopy = () => {
+  const textToCopy = author.address || author?.[0]?.address;
+  if (textToCopy) {
+    navigator.clipboard.writeText(textToCopy)
+    .then(() => {
+    setCopyStatus("Copied!");
+    setTimeout(() => setCopyStatus("Copy"), 4000);
+  })
+  .catch((err) => {
+    console.error("Failed to copy text:", err)
+  });
+  
+}else{
+  console.error("Copy failed: Address not found")
+}
+}
 
 
 useEffect(() => {
-window.scrollTo(0, 0);
-
-async function fetchData() {
-const response = await axios.get(`/authors?author=${id}`)
-console.log(response)
-const data = response.data;
-setAuthor(Array.isArray(data) ? data : [data])
-// const foundAuthor = data.find((author) => author.id === Number(id));
-
-}
-fetchData();
+  window.scrollTo(0, 0);
+  
+  async function fetchData() {
+    const response = await axios.get(`/authors?author=${id}`)
+    const data = response.data;
+    setAuthor(Array.isArray(data) ? data : [data])
+    
+  }
+  fetchData();
 }, [id]);
 
 if (!author) return <div className="container">Loading...</div>;
@@ -58,9 +74,9 @@ if (!author) return <div className="container">Loading...</div>;
                           <span id="wallet" className="profile_wallet">
                             {author.address}
                           </span>
-                          <button id="btn_copy" title="Copy Text">
-                            Copy
-                          </button>
+                          <button id="btn_copy" title="Copy Text" onClick={handleCopy}>
+                            {copyStatus}
+                            </button>
                         </h4>
                       </div>
                     </div>
