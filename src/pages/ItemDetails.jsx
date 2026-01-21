@@ -22,7 +22,6 @@ async function fetchData() {
 
     const response = await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${id}`)
     const data = (response.data)
-    console.log("Fetched Data for ID:", id, response.data)
     setItem(Array.isArray(data) ? data[0] : data);
   } catch (error) {
     console.error("Error fetching item details:", error)
