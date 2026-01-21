@@ -6,27 +6,49 @@ import axios from "axios";
 const ItemDetails = () => {
 const { id } = useParams();
 const [item, setItem] = useState(null)
+const [loading, setLoading] = useState(true)
 
 useEffect(() => {
 window.scrollTo(0, 0);
 
 async function fetchData() {
-const response = await axios.get('/newItems')
-const allItems = response.data;
-const foundItem = allItems.find((item) => item.id === Number(id));
+  if (!id) {
+    console.error("No ID found in URL");
+    return;
+  }
+  setLoading(true);
+  try {
 
-setItem(foundItem);
+    const response = await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${id}`)
+    const data = (response.data)
+    console.log("Fetched Data for ID:", id, response.data)
+    setItem(Array.isArray(data) ? data[0] : data);
+  } catch (error) {
+    console.error("Error fetching item details:", error)
+  }
+  finally
+   {
+    setLoading(false);
+    
+  }
+  
 }
 fetchData();
 }, [id]);
 
-
-
-
+if (loading || !item) {
+  return (
+    <div id="wrapper">
+      <div className="container text-center" style={{padding: '100px'}}>
+        <h2>Loading Item Details...</h2>
+      </div>
+    </div>
+  );
+}
 return (
 <div id="wrapper">
-{item ? (
-<div className="no-bottom no-top" id="content" key = {item.id}>
+
+<div className="no-bottom no-top" id="content">
 <div id="top"></div>
 <section aria-label="section" className="mt90 sm-mt-0">
 <div className="container">
@@ -35,7 +57,7 @@ return (
   <img
     src={item.nftImage}
     className="img-fluid img-rounded mb-sm-30 nft-image"
-    alt=""
+    alt={item.title}
   />
   
   </div>
@@ -43,12 +65,12 @@ return (
 
 <div className="col-md-6">
   <div className="item_info">
-    <h2>{item.title} #{item.code}</h2>
+    <h2>{item.title} #{item.nftId}</h2>
 
     <div className="item_info_counts">
       <div className="item_info_views">
         <i className="fa fa-eye"></i>
-        100
+       {item.views}
       </div>
       <div className="item_info_like">
         <i className="fa fa-heart"></i>
@@ -65,30 +87,29 @@ return (
         <h6>Owner</h6>
         <div className="item_author">
           <div className="author_list_pp">
-            <Link to={`/author/${item.id}`}>
+            <Link to={`/author/${item.ownerId}`}>
               <img className="lazy" src={item.authorImage} alt="" />
               <i className="fa fa-check"></i>
             </Link>
           </div>
           <div className="author_list_info">
-            <Link to={`/author/${item.id}`}>Monica Lucas</Link>
+            <Link to={`/author/${item.ownerId}`}>Monica Lucas</Link>
           </div>
         </div>
       </div>
-      <div></div>
     </div>
     <div className="de_tab tab_simple">
       <div className="de_tab_content">
         <h6>Creator</h6>
         <div className="item_author">
           <div className="author_list_pp">
-            <Link to={`/author/${item.id}`}>
-              <img className="lazy" src={item.authorImage} alt="" />
+            <Link to={`/author/${item.creatorId}`}>
+              <img className="lazy" src={item.creatorImage} alt="" />
               <i className="fa fa-check"></i>
             </Link>
           </div>
           <div className="author_list_info">
-            <Link to={`/author/${item.id}`}>Monica Lucas</Link>
+            <Link to={`/author/${item.creatorId}`}>Monica Lucas</Link>
           </div>
         </div>
       </div>
@@ -106,8 +127,6 @@ return (
 </section>
 </div>
 
-):( <p>Loading...</p>)
-}
 </div>
 
 )
