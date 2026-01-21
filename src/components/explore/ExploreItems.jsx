@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useMemo, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { Box, Skeleton } from "@mui/material";
 import Countdown from "../timer";
@@ -8,11 +8,32 @@ const ExploreItems = () => {
 
   const [data, setData] = useState([])
     const [loading, setLoading] = useState(true);
+    const [searchParams, setSearchParams] = useSearchParams();
     const [visibleItems, setVisibleItems] = useState(8);
 
-    const loadMore =() => {
+   const sortedItems = useMemo(() => {
+  const sortType = searchParams.get("sort");
+  let items = [...data]; 
+
+  if (sortType === "price_low_to_high") {
+    items.sort((a, b) => a.price - b.price);
+  } else if (sortType === "price_high_to_low") {
+    items.sort((a, b) => b.price - a.price);
+  } else if (sortType === "likes_high_to_low") {
+    items.sort((a, b) => b.likes - a.likes);
+  }
+  
+  return items;
+}, [data, searchParams]);
+
+     const loadMore =() => {
       setVisibleItems((prevValue) => prevValue + 4)
     };
+
+  const filterItems = (selectedValue) => {
+    setSearchParams({ sort: selectedValue });
+  };
+   
     
     useEffect(() => {
       window.scrollTo(0, 0);
@@ -31,7 +52,7 @@ const ExploreItems = () => {
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select id="filter-items" value={searchParams.get("sort") || ""} onChange={(e) => filterItems(e.target.value)}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
@@ -49,7 +70,7 @@ const ExploreItems = () => {
 
         )) : (
 
-          data.slice(0, visibleItems).map((data, index) => (
+          sortedItems.slice(0, visibleItems).map((data, index) => (
             <div
             key={index}
             className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
