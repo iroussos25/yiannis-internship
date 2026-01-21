@@ -5,7 +5,7 @@ import Countdown from "../timer";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from "react-slick";
-import { Box, Skeleton, Stack } from "@mui/material";
+import { Box, Skeleton } from "@mui/material";
 import Aos from "aos";
 import "aos/dist/aos.css"
 
@@ -114,25 +114,8 @@ title="Creator: Monica Lucas"
 
 <div className="nft__item_wrap" >
 <div className="nft__item_extra">
-<div className="nft__item_buttons">
-<button>Buy Now</button>
-<div className="nft__item_share">
-        <h4>Share</h4>
-        <a href="" target="_blank" rel="noreferrer">
-          <i className="fa fa-facebook fa-lg"></i>
-          </a>
-          <a href="" target="_blank" rel="noreferrer">
-          <i className="fa fa-twitter fa-lg"></i>
-          </a>
-          <a href="">
-          <i className="fa fa-envelope fa-lg"></i>
-          </a>
-          </div>
-          </div>
-          </div>
-          
-      
-      <Link to={`/item-details/${user.nftId}`}>
+   </div>
+     <Link to={`/item-details/${user.nftId}`}>
           <img
           src={user.nftImage}
           className="lazy nft__item_preview"

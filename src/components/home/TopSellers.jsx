@@ -51,7 +51,7 @@ fetchSellers();
         <li key= {index}>
           <Box display="flex" gap='4px' alignItems="center" columnGap="4px">
 
-          <div classname="author_list_pp">
+          <div className="author_list_pp">
             <Skeleton animation="wave" variant="circular" sx={{marginRight:'0px'}} width={50} height={50} />
           </div>
           <div className="author_list_info">
