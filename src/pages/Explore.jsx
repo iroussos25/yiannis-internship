@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
 
 const Explore = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
-  return (
+    return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
@@ -28,8 +25,7 @@ const Explore = () => {
             </div>
           </div>
         </section>
-
-        <section aria-label="section">
+         <section aria-label="section">
           <div className="container">
             <div className="row">
               <ExploreItems />
