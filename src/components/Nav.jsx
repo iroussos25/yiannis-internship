@@ -1,4 +1,3 @@
-import React from "react";
 import Logo from "../images/Ultraverse.png";
 import { Link } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
