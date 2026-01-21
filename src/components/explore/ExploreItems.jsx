@@ -8,7 +8,12 @@ const ExploreItems = () => {
 
   const [data, setData] = useState([])
     const [loading, setLoading] = useState(true);
-  
+    const [visibleItems, setVisibleItems] = useState(8);
+
+    const loadMore =() => {
+      setVisibleItems((prevValue) => prevValue + 4)
+    };
+    
     useEffect(() => {
       window.scrollTo(0, 0);
   
@@ -33,19 +38,18 @@ const ExploreItems = () => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
+<div className="row">
 
       {
-      loading ?
-      new Array(8).fill(0).map((_, index) => (
-        <Box key={index} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2 }}>
-          <Skeleton variant="rectangular" animation="wave" width={200} height={100} />
-          <Skeleton variant="rectangular" animation="wave" width={200} height={100} />
-          <Skeleton variant="rectangular" animation="wave" width={200} height={100} />
-          <Skeleton variant="rectangular" animation="wave" width={200} height={100} />
-        </Box>
+        loading ?
+        new Array(8).fill(0).map((_, index) => (
+          <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+            <Skeleton variant="rectangular" animation="wave" width="100%" height="450px" sx={{ mb: 2 }}/>
+          </div>
+
         )) : (
 
-          data.map((data, index) => (
+          data.slice(0, visibleItems).map((data, index) => (
             <div
             key={index}
             className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
@@ -101,11 +105,16 @@ const ExploreItems = () => {
         </div>
           )))
       } 
-      <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
+        </div>
+        {visibleItems < data.length && visibleItems < 16 && (
+          <div className="col-md-12 text-center">
+
+        <button  id="loadmore" className="btn-main lead" onClick={loadMore}>
           Load more
-        </Link>
+        </button>
+
       </div>
+        )}
   
   </>
 );
