@@ -2,11 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import {  Box, Skeleton } from "@mui/material";
+import "aos/dist/aos.css"
+import Aos from "aos";
 
 const TopSellers = () => {
 
   const [sellers, setSellers] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+        Aos.init({
+          duration: 2000,
+          once: true,
+        });
+        Aos.refresh();
+      }, []);
 
   useEffect(() => {
     const fetchSellers = async() => {
@@ -24,7 +34,7 @@ fetchSellers();
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
-        <div className="row">
+        <div className="row" data-aos="fade-in">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>Top Sellers</h2>

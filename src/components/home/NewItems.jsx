@@ -6,12 +6,21 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from "react-slick";
 import { Box, Skeleton, Stack } from "@mui/material";
+import Aos from "aos";
+import "aos/dist/aos.css"
 
 const NewItems = () => {
 
 const [users, setUsers] = useState([]);
 const [loading, setLoading] = useState(true);
 
+useEffect(() => {
+      Aos.init({
+        duration: 2000,
+        once: true,
+      });
+      Aos.refresh();
+    }, []);
 
 useEffect(() => {
 
@@ -63,7 +72,7 @@ fetchUsers();
     
     <section id="section-items" className="no-bottom">
 <div className="container">
-<div className="row">
+<div className="row" data-aos="fade-in">
 <div className="col-lg-12">
 <div className="text-center">
 <h2>New Items</h2>
