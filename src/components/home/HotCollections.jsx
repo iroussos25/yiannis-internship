@@ -6,13 +6,21 @@ import 'slick-carousel/slick/slick-theme.css';
 import Slider from "react-slick";
 import { Box, Skeleton, Stack } from "@mui/material";
 import "./HotCollections.css";
+import "aos/dist/aos.css"
+import Aos from "aos";
 
 
 const HotCollections = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   
-  
+  useEffect(() => {
+        Aos.init({
+          duration: 2000,
+          once: true,
+        });
+        Aos.refresh();
+      }, []);
   useEffect(() => {
     
     const fetchUsers = async() => {
@@ -83,7 +91,7 @@ const HotCollections = () => {
                   
           <section id="section-collections" className="no-bottom">
       <div className="container">
-        <div className="row">
+        <div className="row" data-aos="fade-in">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>Hot Collections</h2>
