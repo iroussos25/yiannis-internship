@@ -27,7 +27,7 @@ useEffect(() => {
 const fetchUsers = async() => {
 setLoading(true);
 
-const response = await axios.get('/newItems')
+const response = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems')
 setUsers(response.data)
 setLoading(false);
 }
