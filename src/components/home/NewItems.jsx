@@ -123,7 +123,7 @@ title="Creator: Monica Lucas"
           </div>
           
       
-      <Link to={`/item-details/${user.id}`}>
+      <Link to={`/item-details/${user.nftId}`}>
           <img
           src={user.nftImage}
           className="lazy nft__item_preview"
@@ -132,7 +132,7 @@ title="Creator: Monica Lucas"
       </Link>
       </div>
       <div className="nft__item_info" >
-      <Link to="/item-details">
+      <Link to={`/item-details/${user.nftId}`}>
       <h4>{user.title}</h4>
       </Link>
     <div className="nft__item_price" >{user.price} ETH</div>
