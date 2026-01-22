@@ -41,7 +41,7 @@ const ExploreItems = () => {
       const fetchData = async() => {
         setLoading(true);
   
-        const response = await axios.get('/explore')
+        const response = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/explore')
         setData(response.data) 
         console.log(response.data)
         setLoading(false)

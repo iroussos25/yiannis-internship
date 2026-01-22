@@ -55,7 +55,7 @@ useEffect(() => {
   
   async function fetchData() {
     setLoading(true)
-    const response = await axios.get(`/authors?author=${id}`)
+    const response = await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`)
     const data = response.data;
     setLoading(false)
     setAuthor(Array.isArray(data) ? data : [data])
