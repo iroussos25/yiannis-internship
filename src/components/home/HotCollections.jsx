@@ -59,7 +59,7 @@ const HotCollections = () => {
         }
       },
       {
-        breakpoint: 480,
+        breakpoint: 520,
         settings: {
           slidesToShow: 1,
           slideToScroll: 1,
