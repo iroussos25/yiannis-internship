@@ -10,3 +10,10 @@
 .slick-prev:before, .slick-next:before {
     color: purple
 }
+
+.slick-next {
+    right: -2px;
+}
+.slick-prev {
+    left: -2px;
+}

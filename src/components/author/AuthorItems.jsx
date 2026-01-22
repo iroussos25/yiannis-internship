@@ -15,7 +15,7 @@ window.scrollTo(0, 0);
 
 async function fetchData() {
   setLoading(true);
-const response = await axios.get(`/authors?author=${id}`)
+const response = await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`)
 const data = response.data;
 setAuthor(Array.isArray(data) ? data[0] : data)
 setLoading(false);
